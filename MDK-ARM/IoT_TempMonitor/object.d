@@ -1,0 +1,11 @@
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread/src/object.c
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtthread.h
+iot_tempmonitor\object.o: ../Inc/rtconfig.h
+iot_tempmonitor\object.o: .\RTE\_IoT_TempMonitor\RTE_Components.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtdebug.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtdef.h
+iot_tempmonitor\object.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtservice.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtm.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rtthread.h
+iot_tempmonitor\object.o: ../Middlewares/Third_Party/RT-Thread//include/rthw.h
