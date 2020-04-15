@@ -25,7 +25,7 @@
 
 void MX_RT_Thread_Init(void)
 {
-	
+
 }
 
 void MX_RT_Thread_Process(void)

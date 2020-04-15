@@ -21,6 +21,10 @@
 
 #include <rtthread.h>
 #include <rthw.h>
+#include "stm32g0xx_hal.h"
+
+/* user's header file */
+#include "usart.h"
 
 #ifdef RT_USING_MODULE
 #include <dlmodule.h>
@@ -534,11 +538,11 @@ char *strdup(const char *s) __attribute__((alias("rt_strdup")));
  */
 void rt_show_version(void)
 {
-    rt_kprintf("\n \\ | /\n");
-    rt_kprintf("- RT -     Thread Operating System\n");
-    rt_kprintf(" / | \\     %d.%d.%d build %s\n",
+    rt_kprintf("\n \\ | /\r\n");
+    rt_kprintf("- RT -     Thread Operating System\r\n");
+    rt_kprintf(" / | \\     %d.%d.%d build %s\r\n",
                RT_VERSION, RT_SUBVERSION, RT_REVISION, __DATE__);
-    rt_kprintf(" 2006 - 2019 Copyright by rt-thread team\n");
+    rt_kprintf(" 2006 - 2019 Copyright by rt-thread team\r\n");
 }
 RTM_EXPORT(rt_show_version);
 
@@ -1142,9 +1146,11 @@ rt_device_t rt_console_set_device(const char *name)
 RTM_EXPORT(rt_console_set_device);
 #endif
 
+//extern UART_HandleTypeDef huart2;
 RT_WEAK void rt_hw_console_output(const char *str)
 {
     /* empty console output */
+    HAL_UART_Transmit(&huart2, (unsigned char *)str, rt_strlen(str), 0xFFFFF);
 }
 RTM_EXPORT(rt_hw_console_output);
 

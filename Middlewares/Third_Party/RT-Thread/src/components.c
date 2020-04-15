@@ -19,6 +19,9 @@
 #include <rthw.h>
 #include <rtthread.h>
 
+/* user's header file */
+#include "usart.h"
+
 #ifdef RT_USING_USER_MAIN
 #ifndef RT_MAIN_THREAD_STACK_SIZE
 #define RT_MAIN_THREAD_STACK_SIZE     2048
@@ -216,9 +219,11 @@ int rtthread_startup(void)
      * NOTE: please initialize heap inside board initialization.
      */
     rt_hw_board_init();
-
+	
+	User_USART_Init();        //  initlize usart1 and usart2
+    
     /* show RT-Thread version */
-    rt_show_version();
+    rt_show_version();     
 
     /* timer system initialization */
     rt_system_timer_init();

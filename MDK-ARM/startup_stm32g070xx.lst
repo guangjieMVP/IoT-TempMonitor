@@ -354,8 +354,8 @@ ARM Macro Assembler    Page 6
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
-work --depend=iot_tempmonitor\startup_stm32g070xx.d -oiot_tempmonitor\startup_s
-tm32g070xx.o -I.\RTE\_IoT_TempMonitor -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMS
+work --depend=iot_temperature\startup_stm32g070xx.d -oiot_temperature\startup_s
+tm32g070xx.o -I.\RTE\_IoT_Temperature -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMS
 IS\Core\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32G0xx_DFP\1.2.0\Drivers\CMSIS\De
 vice\ST\STM32G0xx\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISIO
 N_VERSION SETA 526" --predefine="_RTE_ SETA 1" --predefine="STM32G070xx SETA 1"
