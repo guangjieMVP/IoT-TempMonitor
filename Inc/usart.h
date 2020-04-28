@@ -26,22 +26,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-/* USER CODE BEGIN Includes */
+#define USART_BUFF_SIZE   1024
+typedef struct{
+	unsigned char buffer[USART_BUFF_SIZE];
+	unsigned int  len;
+}usart_buffer_t;
 
-/* USER CODE END Includes */
 
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
 
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
-
-//void MX_USART1_UART_Init(void);
-//void MX_USART2_UART_Init(void);
-	 
 void User_USART_Init(void);
-
+void usart_write(UART_HandleTypeDef *usatHandle, uint8_t *buffer, uint16_t size);
 /* USER CODE BEGIN Prototypes */
 
 /* USER CODE END Prototypes */

@@ -11,8 +11,8 @@
 
 #include "stm32g0xx_hal.h"
 
-void LED_Toggle(void);
-void LED_TurnOn(void);
-void LED_TurnOff(void);
+void led_toggle(void);
+void led_on(void);
+void led_off(void);
 
 #endif

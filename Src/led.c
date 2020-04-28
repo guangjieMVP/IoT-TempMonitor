@@ -9,18 +9,18 @@
 #include "led.h"
 
 
-void LED_Toggle(void)
+void led_toggle(void)
 {
     HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 }
 
-void LED_TurnOn(void)
+void led_on(void)
 {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, RESET);
 }
 
 
-void LED_TurnOff(void)
+void led_off(void)
 {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, SET);
 }

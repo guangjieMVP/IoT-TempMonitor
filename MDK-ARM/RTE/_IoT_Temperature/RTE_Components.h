@@ -16,5 +16,6 @@
  */
 #define CMSIS_device_header "stm32g0xx.h"
 
+#define JANSSON
 
 #endif /* RTE_COMPONENTS_H */

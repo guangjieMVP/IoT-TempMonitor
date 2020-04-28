@@ -21,6 +21,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32g0xx_it.h"
+#include "usart.h"
+#include <rtthread.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -97,19 +99,46 @@ void SVC_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32g0xx.s).                    */
 /******************************************************************************/
-
+static uint8_t res;
+extern usart_buffer_t  usart1_buffer;;
 /**
   * @brief This function handles USART1 global interrupt / USART1 wake-up interrupt through EXTI line 25.
   */
 void USART1_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART1_IRQn 0 */
+//	HAL_UART_IRQHandler(&huart1);
+	if(__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE) != RESET)
+	{
+		res = huart1.Instance->RDR;
+		if(usart1_buffer.len < USART_BUFF_SIZE)
+		{
+			usart1_buffer.buffer[usart1_buffer.len++] = res;
+		}
+		else
+		{
+			usart1_buffer.len = 0;
+			usart1_buffer.buffer[usart1_buffer.len++] = res;
+		}
+		__HAL_UART_CLEAR_FLAG(&huart1, UART_IT_RXNE);
+	}
+	if(__HAL_UART_GET_FLAG(&huart1, UART_FLAG_IDLE) != RESET)
+	{
+//		__HAL_UART_GET_FLAG(&huart1, UART_FLAG_IDLE)；
+//		res = huart1.Instance->RDR;
+//		HAL_UART_Receive(&huart1, &res, 1, 0xffff);
+//		HAL_UART_Receive_IT(&huart1, &res, 1);
+		__HAL_UART_CLEAR_IDLEFLAG(&huart1);
+//		rt_kprintf("%s\r\n", usart1MsgBuffer.buffer);
+		// HAL_UART_Transmit(&huart1, usart1MsgBuffer.buffer, usart1MsgBuffer.len, 0xfffff);
+		// USART_Write(&huart2, usart1MsgBuffer.buffer, usart1MsgBuffer.len);
 
-  /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
-  /* USER CODE BEGIN USART1_IRQn 1 */
-
-  /* USER CODE END USART1_IRQn 1 */
+        extern struct rt_mailbox uart1_mb;
+        rt_mb_send(&uart1_mb, (rt_uint32_t)&usart1_buffer); //通过消息有效发送消息给串口1消息处理线程
+        
+//		rt_kprintf("IDLE Interrupt\r\n");
+//		rt_memset(usart1MsgBuffer.buffer, 0, BUFF_SIZE);
+//		usart1MsgBuffer.len = 0;
+	}
 }
 
 /**

@@ -1,3 +1,11 @@
+/**********************************************************************
+  * @file:        xxx.c
+  * @author:      guangjieMVP
+  * @version:     v1.00.00
+  * @date:        2020-xx-xx
+  * @github:      https://github.com/guangjieMVP
+  * @brief: 
+************************************************************************/
 /************************************************************************
   * @file:     xxx.c
   * @author:   guangjieMVP
@@ -45,7 +53,7 @@
         * EVENT_OUT
         * EXTI
 */
-void MX_GPIO_Init(void)
+void led_gpio_init(void)
 {
 
     GPIO_InitTypeDef GPIO_InitStruct = {0};

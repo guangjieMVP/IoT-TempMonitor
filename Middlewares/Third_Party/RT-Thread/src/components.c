@@ -220,9 +220,20 @@ int rtthread_startup(void)
      */
     rt_hw_board_init();
 	
+    extern void led_gpio_init(void);
+	extern void user_ds18b20_init(void);
+//	extern void SystemClock_Config(void);
+//	SystemClock_Config();
+    led_gpio_init();
 	User_USART_Init();        //  initlize usart1 and usart2
-    
+    user_ds18b20_init();
     /* show RT-Thread version */
+	
+//	void janson_test(void);
+//	janson_test();
+//	extern void send_temperature_json(float temperature);
+//	send_temperature_json(28.3);
+	printf("aaaaa\r\n");
     rt_show_version();     
 
     /* timer system initialization */
